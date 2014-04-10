@@ -18,7 +18,7 @@ jQuery(function() {
   // TV Tower
   L.marker([52.52060806001903, 13.409671783447266], {
     icon: L.icon({
-      iconUrl: '/assets/alex.png',
+      iconUrl: jQuery('#tv-tower').attr('src'),
       iconAnchor: L.point([79, 178])
     }),
     clickable: false,
