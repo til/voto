@@ -1,0 +1,7 @@
+%h1 Clubs
+
+- @clubs.each do |club|
+  %p= club.name
+
+%p
+  = link_to 'New', new_club_path
