@@ -24,3 +24,5 @@ gem 'leaflet-rails'
 gem 'rails-assets'
 gem 'rails-assets-bootstrap'
 gem 'rails-assets-jquery-ui'
+
+gem 'rails_12factor', group: :production
