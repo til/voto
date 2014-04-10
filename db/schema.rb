@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140410121259) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "clubs", force: true do |t|
     t.string   "name",        null: false
     t.integer  "first_year",  null: false
