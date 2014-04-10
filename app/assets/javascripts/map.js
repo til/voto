@@ -15,12 +15,6 @@ jQuery(function() {
     maxZoom: 20
   }).addTo(map);
 
-  map.on('click', function(e) {
-    console.log('click')
-    console.log(e.latlng)
-  })
-
-
   // TV Tower
   L.marker([52.52060806001903, 13.409671783447266], {
     icon: L.icon({
@@ -48,58 +42,45 @@ jQuery(function() {
 
   control.addTo(map);
 
-  var clubs = [
-    { point: [52.50, 13.35], name: 'Boogie' },
-    { point: [52.51, 13.36], name: 'Kunst und Technik' },
-    { point: [52.52, 13.40], name: 'Eschloraque' },
-    { point: [52.53, 13.42], name: 'WMF' }
-  ]
+  jQuery.getJSON('/clubs.json', function(data) {
+    var clubs = data['clubs'];
+    var years = data['years'];
 
-  for (var i = 0; i < clubs.length; i++) {
-    clubs[i].marker = L.marker(clubs[i].point);
-  }
-
-
-  var years = {
-    1990: [1],
-    1991: [1, 2],
-    1992: [1, 2],
-    1993: [1, 2],
-    1994: [0, 1, 2],
-    1995: [0, 1, 2],
-    1996: [0, 1, 2, 3],
-    1997: [0, 1, 2, 3],
-    1998: [0, 1, 2, 3],
-    1999: [2, 3],
-    2000: [2, 3],
-    2001: [3]
-  }
-
-  var slide = function(e, ui) {
-    console.log(years[ui.value]);
     for (var i = 0; i < clubs.length; i++) {
-      map.removeLayer(clubs[i].marker);
+      var club = clubs[i];
+      clubs[i].marker = L.marker(
+        [club.latitude, club.longitude], {
+          title: club.name
+        })
+        .bindPopup(
+          "<h4>" + club.name + "</h4>" +
+          "<p>" + club.first_year + "-" + (club.last_year ? club.last_year : '') + "</p>" +
+          "<p>" + club.description + "</p>" +
+          "<p>" + club.address + "</p>"
+        );
     }
 
-    // maybe use
-    //marker1._icon.style.display="none"
+    var slide = function(e, ui) {
+      var year = parseInt(ui.value);
 
-    for (var i = 0; i < (years[ui.value] || []).length; i++) {
-      var club = clubs[years[ui.value][i]];
-      console.log(clubs[years[ui.value][i]].name);
-      club.marker.addTo(map);
+      for (var i = 0; i < clubs.length; i++) {
+        map.removeLayer(clubs[i].marker);
+      }
+
+      // maybe hide instead with:
+      //marker1._icon.style.display="none"
+
+      for (var i = 0; i < (years[year] || []).length; i++) {
+        var club = clubs[years[year][i]];
+        club.marker.addTo(map);
+      }
     }
-  }
 
-  jQuery('#slider').slider({
-    min: 1989,
-    max: 2014,
-    slide: slide
+    jQuery('#slider').slider({
+      min: 1989,
+      max: 2014,
+      slide: slide
+    });
   });
 
-
-  // add a marker in the given location, attach some popup content to it and open the popup
-  //L.marker([51.5, -0.09]).addTo(map)
-  //  .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
-  //  .openPopup();
 })

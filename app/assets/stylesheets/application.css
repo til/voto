@@ -11,6 +11,7 @@
  *= require_self
  *= require jquery-ui
  *= require leaflet
+ *= require formtastic
  *= require_tree .
  */
 
@@ -24,7 +25,7 @@ body {
 }
 
 .leaflet-bottom.leaflet-left {
-  width: 98%;
+  width: 94%;
 }
 
 .slider-control {

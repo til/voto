@@ -1,7 +1,14 @@
 %h1 Clubs
 
 - @clubs.each do |club|
-  %p= club.name
+  %h2= club.name
+  %p= "#{club.first_year} - #{club.last_year}"
+  %p= club.description
+  %p= club.address
+  %p= "#{club.latitude} / #{club.longitude}"
+  %p
+    = link_to '[edit]', edit_club_path(club)
+    = link_to '[delete]', club_path(club), method: 'delete', confirm: 'For real?'
 
 %p
   = link_to 'New', new_club_path
