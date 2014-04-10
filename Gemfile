@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
+ruby '2.1.0'
 
 gem 'rails', '4.0.3'
 
