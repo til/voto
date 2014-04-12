@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
-ruby '2.1.0'
+ruby '2.1.1'
 
 gem 'rails', '4.0.3'
 
@@ -10,8 +10,6 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'formtastic'
 gem 'geocoder'
-
-gem 'rspec-rails'
 
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -26,3 +24,8 @@ gem 'rails-assets-bootstrap'
 gem 'rails-assets-jquery-ui'
 
 gem 'rails_12factor', group: :production
+
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+end

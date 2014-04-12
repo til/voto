@@ -8,7 +8,7 @@
   %p= "#{club.latitude} / #{club.longitude}"
   %p
     = link_to '[edit]', edit_club_path(club)
-    = link_to '[delete]', club_path(club), method: 'delete', confirm: 'For real?'
+    = link_to '[delete]', club_path(club), method: 'delete', data: { confirm: 'For real?' }
 
 %p
   = link_to 'New', new_club_path

@@ -5,8 +5,8 @@ describe Club do
   describe 'as_json' do
     subject { Club.all_as_json }
     before do
-      Club.create!(name: 'WMF',    first_year: 2010, last_year: 2012, latitude: 13.5, longitude: 52.5)
-      Club.create!(name: 'GayWMF', first_year: 2012,                  latitude: 13.5, longitude: 52.5)
+      Club.create!(name: 'WMF',   first_year: 2010, last_year: 2012, latitude: 13.5, longitude: 52.5)
+      Club.create!(name: 'GayMF', first_year: 2012,                  latitude: 13.5, longitude: 52.5)
     end
 
     it 'has clubs' do
